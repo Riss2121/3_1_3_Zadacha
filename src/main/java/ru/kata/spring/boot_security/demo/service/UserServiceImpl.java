@@ -48,12 +48,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) {
-        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        } else {
-            user.setPassword(userRepository.findById(user.getId()).get().getPassword());
+        User existingUser = userRepository.findById(user.getId())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setAge(user.getAge());
+        existingUser.setUsername(user.getUsername());
+        existingUser.setRoles(user.getRoles());
+
+        if (user.getPassword() != null && !user.getPassword().isBlank()) {
+            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        userRepository.save(user);
+
+        userRepository.save(existingUser);
     }
 
     @Override
