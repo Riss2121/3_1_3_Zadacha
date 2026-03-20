@@ -56,6 +56,7 @@ mvn spring-boot:run
 Приложение будет доступно:
 
 http://localhost:8080
+
 ##📁 Структура проекта
 - controller/   → контроллеры (MVC)
 - service/      → бизнес-логика
@@ -63,6 +64,7 @@ http://localhost:8080
 - model/        → сущности (Entity)
 - configs/      → конфигурация Security
 - templates/    → HTML страницы
+
 ##📌 Основные эндпоинты
 - Метод	URL	Описание
 - GET	/login	страница входа
