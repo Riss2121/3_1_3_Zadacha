@@ -1,104 +1,54 @@
 🔐 Spring Boot Security CRUD
 
-Web-приложение с аутентификацией и ролевой авторизацией (ADMIN / USER) на Spring Boot.
+Web-приложение с аутентификацией и ролями (ADMIN / USER) на Spring Boot.
 
 🚀 Tech Stack
 
-Java
-
-Spring Boot
-
-Spring Security
-
-Spring Data JPA (Hibernate)
-
-MySQL
-
-Thymeleaf
-
-Bootstrap 5
+Java, Spring Boot, Spring Security, Spring Data JPA (Hibernate), MySQL, Thymeleaf, Bootstrap 5
 
 ⚙️ Features
-🔑 Authentication
 
-Кастомная форма логина
+Authentication: кастомный login, BCrypt
+Roles: ROLE_ADMIN, ROLE_USER
 
-BCrypt шифрование паролей
+Admin (/admin):
 
-👥 Authorization
+просмотр всех пользователей
 
-ROLE_ADMIN
+создание
 
-ROLE_USER
+редактирование (modal)
 
-🛠 Admin (/admin)
+удаление (modal)
 
-Просмотр всех пользователей
+User (/user):
 
-Добавление пользователей
+просмотр своих данных
 
-Редактирование (modal)
-
-Удаление (modal)
-
-👤 User (/user)
-
-Просмотр своих данных
-
-Доступ только к своей странице
-
-🔒 Security Rules
-/admin/**  → ROLE_ADMIN
-/user/**   → ROLE_USER, ROLE_ADMIN
-
-После логина пользователь перенаправляется по роли.
-
-🗄 Project Structure
-src/main/java/...
-├── controller
-├── service
-├── repository
-├── model
-└── configs
-
-src/main/resources/
-└── templates
-⚙️ Configuration
-
-application.properties
-
+🔒 Security
+/admin/** → ROLE_ADMIN
+/user/**  → ROLE_USER, ROLE_ADMIN
+🗄 Structure
+controller/
+service/
+repository/
+model/
+configs/
+templates/
+⚙️ Config
 spring.datasource.url=jdbc:mysql://localhost:3306/security_db
 spring.datasource.username=root
 spring.datasource.password=root
-
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ▶️ Run
 mvn spring-boot:run
-
-или через IDE
-
-🌐 Access
+🌐 URL
 http://localhost:8080
 🧪 Test Users
-ADMIN
-username: admin
-password: admin
+admin / admin
+user / user
 
-USER
-username: user
-password: user
-📦 Clone
-git clone https://github.com/your-repo.git
 ✍️ Author
 
-Roman
-Java / Spring Developer 🚀
-
-Если хочешь ещё круче (как у топовых реп):
-
-добавлю бейджи (build, version)
-
-скрины UI
-
-или полностью на английском стиле OSS
+Roman — Java / Spring Developer 🚀
