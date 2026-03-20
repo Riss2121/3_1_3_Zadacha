@@ -1,54 +1,99 @@
-🔐 Spring Boot Security CRUD
+# Spring Boot Security CRUD Application
 
-Web-приложение с аутентификацией и ролями (ADMIN / USER) на Spring Boot.
+Простое CRUD-приложение на Spring Boot с авторизацией и ролями, с использованием:
 
-🚀 Tech Stack
+- Spring Boot
+- Spring Security
+- Spring Data JPA (Hibernate)
+- MySQL
+- Thymeleaf
+- Maven
 
-Java, Spring Boot, Spring Security, Spring Data JPA (Hibernate), MySQL, Thymeleaf, Bootstrap 5
+## 📌 Описание
 
-⚙️ Features
+Приложение реализует CRUD-операции для сущности `User` с системой ролей:
 
-Authentication: кастомный login, BCrypt
-Roles: ROLE_ADMIN, ROLE_USER
+- создание пользователя
+- просмотр списка пользователей
+- обновление данных
+- удаление пользователя
+- авторизация и разграничение доступа
 
-Admin (/admin):
+## ⚙️ Технологии
 
-просмотр всех пользователей
+- Java 24
+- Spring Boot
+- Spring MVC
+- Spring Security
+- Spring Data JPA
+- Hibernate
+- MySQL
+- Thymeleaf
 
-создание
+## 🚀 Запуск проекта
 
-редактирование (modal)
+### 1. Клонировать репозиторий
+git clone https://github.com/Riss2121/3_1_3_Zadacha.git
 
-удаление (modal)
+###2. Настроить базу данных
 
-User (/user):
+Создай БД в MySQL:
 
-просмотр своих данных
-
-🔒 Security
-/admin/** → ROLE_ADMIN
-/user/**  → ROLE_USER, ROLE_ADMIN
-🗄 Structure
-controller/
-service/
-repository/
-model/
-configs/
-templates/
-⚙️ Config
-spring.datasource.url=jdbc:mysql://localhost:3306/security_db
+CREATE DATABASE security_db;
+### 3. Настроить application.properties
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/security_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
 spring.datasource.username=root
 spring.datasource.password=root
+
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-▶️ Run
+### 4. Запуск
+
+Через IntelliJ IDEA или:
+
 mvn spring-boot:run
-🌐 URL
+
+Приложение будет доступно:
+
 http://localhost:8080
-🧪 Test Users
-admin / admin
-user / user
+##📁 Структура проекта
+- controller/   → контроллеры (MVC)
+- service/      → бизнес-логика
+- repository/   → работа с БД
+- model/        → сущности (Entity)
+- configs/      → конфигурация Security
+- templates/    → HTML страницы
+##📌 Основные эндпоинты
+- Метод	URL	Описание
+- GET	/login	страница входа
+- GET	/admin	админ панель
+- POST	/admin	создать пользователя
+- POST	/admin/edit	обновить пользователя
+- POST	/admin/delete	удалить пользователя
+- GET	/user	страница пользователя
+##🔒 Доступ
 
-✍️ Author
+/admin/** → только ADMIN
+/user/** → USER и ADMIN
 
-Roman — Java / Spring Developer 🚀
+После логина происходит редирект по роли.
+
+##🧪 Тестовые пользователи
+ADMIN:
+username: admin
+password: admin
+
+USER:
+username: user
+password: user
+##📝 Особенности
+
+реализация UserDetails и GrantedAuthority
+
+кастомный SuccessUserHandler
+
+шифрование паролей через BCrypt
+
+Bootstrap UI: navbar, sidebar, tabs, modal windows
+
+##👤 Автор Roman Bashilov
