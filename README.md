@@ -1,10 +1,10 @@
-🔐 Spring Boot Security CRUD App
+🔐 Spring Boot Security CRUD
 
-Веб-приложение на Spring Boot с авторизацией и разграничением доступа по ролям (ADMIN / USER).
+Web-приложение с аутентификацией и ролевой авторизацией (ADMIN / USER) на Spring Boot.
 
-🚀 Стек технологий
+🚀 Tech Stack
 
-Java 17+
+Java
 
 Spring Boot
 
@@ -18,105 +18,87 @@ Thymeleaf
 
 Bootstrap 5
 
-📌 Функционал
-🔑 Аутентификация
+⚙️ Features
+🔑 Authentication
 
 Кастомная форма логина
 
-Шифрование паролей (BCrypt)
+BCrypt шифрование паролей
 
-👤 Роли
+👥 Authorization
 
 ROLE_ADMIN
 
 ROLE_USER
 
-🛠 ADMIN
-
-Доступ: /admin
+🛠 Admin (/admin)
 
 Просмотр всех пользователей
 
-Создание пользователя
+Добавление пользователей
 
 Редактирование (modal)
 
 Удаление (modal)
 
-👤 USER
-
-Доступ: /user
+👤 User (/user)
 
 Просмотр своих данных
 
-Нет доступа к админке
+Доступ только к своей странице
 
-🔒 Безопасность
+🔒 Security Rules
+/admin/**  → ROLE_ADMIN
+/user/**   → ROLE_USER, ROLE_ADMIN
 
-Доступ к /admin/** → только ADMIN
+После логина пользователь перенаправляется по роли.
 
-Доступ к /user/** → USER и ADMIN
+🗄 Project Structure
+src/main/java/...
+├── controller
+├── service
+├── repository
+├── model
+└── configs
 
-Редирект после логина по роли
+src/main/resources/
+└── templates
+⚙️ Configuration
 
-🗄 Структура
-controller/
-service/
-repository/
-model/
-configs/
-templates/
-⚙️ Настройка
 application.properties
+
 spring.datasource.url=jdbc:mysql://localhost:3306/security_db
 spring.datasource.username=root
 spring.datasource.password=root
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-▶️ Запуск
+▶️ Run
 mvn spring-boot:run
 
-или через IntelliJ
+или через IDE
 
-🌐 Доступ
+🌐 Access
 http://localhost:8080
-🧪 Тестовые пользователи
-
-(создаются вручную или через SQL)
-
-ADMIN:
+🧪 Test Users
+ADMIN
 username: admin
 password: admin
 
-USER:
+USER
 username: user
 password: user
-📷 UI
-
-Bootstrap интерфейс
-
-Navbar
-
-Sidebar
-
-Tabs
-
-Modal окна
-
-📦 Git
-
-Клонирование:
-
+📦 Clone
 git clone https://github.com/your-repo.git
-✍️ Автор
+✍️ Author
 
-Roman — Java / Spring Developer
+Roman
+Java / Spring Developer 🚀
 
-Если хочешь, могу сделать:
+Если хочешь ещё круче (как у топовых реп):
 
-README под GitHub с бейджами
+добавлю бейджи (build, version)
 
-или на английском
+скрины UI
 
-или с картинками UI
+или полностью на английском стиле OSS
