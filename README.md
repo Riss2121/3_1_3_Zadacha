@@ -9,7 +9,7 @@
 - Thymeleaf
 - Maven
 
-## 📌 Описание
+##  📌 Описание
 
 Приложение реализует CRUD-операции для сущности `User` с системой ролей:
 
@@ -19,7 +19,7 @@
 - удаление пользователя
 - авторизация и разграничение доступа
 
-## ⚙️ Технологии
+##  ⚙️ Технологии
 
 - Java 24
 - Spring Boot
@@ -57,7 +57,7 @@ mvn spring-boot:run
 
 http://localhost:8080
 
-##📁 Структура проекта
+## 📁 Структура проекта
 - controller/   → контроллеры (MVC)
 - service/      → бизнес-логика
 - repository/   → работа с БД
@@ -65,7 +65,7 @@ http://localhost:8080
 - configs/      → конфигурация Security
 - templates/    → HTML страницы
 
-##📌 Основные эндпоинты
+## 📌 Основные эндпоинты
 - Метод	URL	Описание
 - GET	/login	страница входа
 - GET	/admin	админ панель
@@ -73,14 +73,14 @@ http://localhost:8080
 - POST	/admin/edit	обновить пользователя
 - POST	/admin/delete	удалить пользователя
 - GET	/user	страница пользователя
-##🔒 Доступ
+## 🔒 Доступ
 
 /admin/** → только ADMIN
 /user/** → USER и ADMIN
 
 После логина происходит редирект по роли.
 
-##🧪 Тестовые пользователи
+## 🧪 Тестовые пользователи
 ADMIN:
 username: admin
 password: admin
@@ -88,7 +88,7 @@ password: admin
 USER:
 username: user
 password: user
-##📝 Особенности
+## 📝 Особенности
 
 реализация UserDetails и GrantedAuthority
 
@@ -98,4 +98,4 @@ password: user
 
 Bootstrap UI: navbar, sidebar, tabs, modal windows
 
-##👤 Автор Roman Bashilov
+## 👤 Автор Roman Bashilov
