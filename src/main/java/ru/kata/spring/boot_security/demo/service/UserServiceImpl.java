@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -26,18 +24,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
+        return userRepository.findByUsernameWithRoles(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Override
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userRepository.findAllWithRoles();
     }
 
     @Override
     public User findById(Long id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findByIdWithRoles(id).orElse(null);
     }
 
     @Override
@@ -48,14 +46,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) {
-        User existingUser = userRepository.findById(user.getId())
+        User existingUser = userRepository.findByIdWithRoles(user.getId())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setAge(user.getAge());
         existingUser.setUsername(user.getUsername());
-        existingUser.setRoles(user.getRoles());
+
+        if (user.getRoles() != null && !user.getRoles().isEmpty()) {
+            existingUser.setRoles(user.getRoles());
+        }
 
         if (user.getPassword() != null && !user.getPassword().isBlank()) {
             existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -71,6 +72,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
+        return userRepository.findByUsernameWithRoles(username).orElse(null);
     }
 }
